@@ -1,35 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PinkGhostPathfinding : MonoBehaviour
-{
- public Transform[] points;
+{   private NavMeshAgent ai;
 
-    private UnityEngine.AI.NavMeshAgent nav;
-    private int destPoint;
-
+    public Transform player;
 
     // Start is called before the first frame update
     void Start()
     {
-        nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        ai = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (!nav.pathPending && nav.remainingDistance < 0.5f)
-        GoToNextPoint();
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        Vector3 dirToPLayer = transform.position - player.transform.position;
+
+        Vector3 newPos = transform.position - dirToPLayer;
+
+        ai.SetDestination(newPos);
+
+        
     }
 
-    void GoToNextPoint()
-    {
-        if(points.Length == 0)
-        {
-            return;
-        }
-        nav.destination = points[destPoint].position;
-        destPoint = (destPoint + 1) % points.Length;
-    }
+
+
 }
