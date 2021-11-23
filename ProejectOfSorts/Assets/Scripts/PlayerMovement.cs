@@ -8,8 +8,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 12f;
     public float gravity = -9.81f;
-    public float jumpPower = 2f;
+    float jumpPower = 2f;
     public Rigidbody playerrb;
+    public int playerScore = 0;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -41,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
        controller.Move(velocity * Time.deltaTime);
 
         jump();
+        Death();
+        Scoring();
+        
     }
 
 
@@ -50,12 +54,32 @@ public class PlayerMovement : MonoBehaviour
             if(Input.GetButtonDown("Jump") && isGrounded)
             {
             velocity.y += Mathf.Sqrt(jumpPower * -3.0f * gravity);
-            }
-        
+            }              
+    }
 
+    void Death()
+    {
+       
+    }
+
+    void Scoring()
+    {
         
     }
 
-    
+    public void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "death")
+        {
+            print("I died");
+        }
+
+        if(col.gameObject.tag == "objective")
+        {
+            playerScore ++;
+            print("coin collected");
+        }
+    }
+
 
 }
