@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -71,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "death")
         {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene("DeathScreen");
             print("I died");
         }
 

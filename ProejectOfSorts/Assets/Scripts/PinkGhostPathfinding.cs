@@ -11,6 +11,7 @@ public class PinkGhostPathfinding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         ai = GetComponent<NavMeshAgent>();
     }
 
@@ -24,8 +25,6 @@ public class PinkGhostPathfinding : MonoBehaviour
         Vector3 newPos = transform.position - dirToPLayer;
 
         ai.SetDestination(newPos);
-
-        
     }
 
 

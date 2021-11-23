@@ -20,4 +20,6 @@ public class UIScript : MonoBehaviour
         playerScore = playerMovement.playerScore;
         scoreCounter.text = "Score: " + playerScore;
     }
+
+    
 }
