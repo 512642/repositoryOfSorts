@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 12f;
+    public float speed = 10f;
     public float gravity = -9.81f;
     float jumpPower = 2f;
     public Rigidbody playerrb;
@@ -43,11 +43,9 @@ public class PlayerMovement : MonoBehaviour
        controller.Move(velocity * Time.deltaTime);
 
         jump();
-        Death();
-        Scoring();
+        Win();
         
     }
-
 
     void jump()
     {
@@ -58,31 +56,28 @@ public class PlayerMovement : MonoBehaviour
             }              
     }
 
-    void Death()
-    {
-       
-    }
-
-    void Scoring()
-    {
-        
-    }
-
     public void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "death")
         {
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("DeathScreen");
-            print("I died");
         }
 
         if(col.gameObject.tag == "objective")
         {
             playerScore ++;
-            print("coin collected");
         }
     }
+    void Win()
+    {
+        if (playerScore == 6)
+        {
+            SceneManager.LoadScene("LevelWon");
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
 
 
 }

@@ -18,7 +18,7 @@ public class UIScript : MonoBehaviour
     void Update()
     {
         playerScore = playerMovement.playerScore;
-        scoreCounter.text = "Score: " + playerScore;
+        scoreCounter.text = "Score: " + playerScore + "/6";
     }
 
     

@@ -12,4 +12,10 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("GameScreen");
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void QuitGame()
+    {
+        print("quit game");
+        Application.Quit();
+    }
 }

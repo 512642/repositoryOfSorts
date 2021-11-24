@@ -10,6 +10,8 @@ public class MouseLook : MonoBehaviour
      
     float xRotation = 0f;
 
+    public float flipCam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,21 @@ public class MouseLook : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(xRotation, flipCam, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        InvertCam();
+    }
+
+    void InvertCam()
+    {
+        if (Input.GetButton("Tab"))
+        {
+            flipCam = 180f;
+        }
+        else
+        {
+            flipCam = 0f;
+        }
     }
 }
